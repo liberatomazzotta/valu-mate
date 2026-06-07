@@ -27,7 +27,6 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
         
-        /* Modificato il body per gestire la disposizione responsive della sidebar */
         body { background-color: var(--bg-main); color: var(--text-main); display: flex; flex-direction: row; height: 100vh; overflow: hidden; }
 
         /* --- SIDEBAR DI NAVIGAZIONE --- */
@@ -54,7 +53,7 @@
         .card { background: var(--bg-card); border-radius: 10px; padding: 25px; box-shadow: var(--shadow-md); border: 1px solid var(--border); margin-bottom: 25px; }
         .card-title { font-size: 15px; font-weight: 600; color: var(--primary-light); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        /* --- UTILITY GRID (Responsive-ready) --- */
+        /* --- UTILITY GRID --- */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
         .split-correction { display: grid; grid-template-columns: 1fr 1.1fr; gap: 30px; }
@@ -87,7 +86,7 @@
 
         /* --- TABELLA INTERATTIVA CON SCROLL ISOLATO --- */
         .table-container { max-height: 380px; overflow-y: auto; overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-sm); background: white; margin-bottom: 25px; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; min-width: 650px; } /* Impedisce il collasso delle colonne */
+        table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; min-width: 650px; }
         th { background: #f8fafc; color: var(--primary-light); font-weight: 600; padding: 12px 14px; border-bottom: 2px solid var(--border); position: sticky; top: 0; cursor: pointer; user-select: none; }
         th:hover { background: #f1f5f9; }
         td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-main); vertical-align: middle; }
@@ -119,18 +118,13 @@
         .chart-container { width: 100%; height: 200px; display: flex; align-items: flex-end; justify-content: space-between; padding-top: 20px; position: relative; }
         .svg-chart { width: 100%; height: 100%; }
 
-
-        /* ==========================================================================
-           --- MEDIA QUERIES PER RENDERE IL SITO 100% RESPONSIVE ---
-           ========================================================================== */
-        
         @media (max-width: 992px) {
-            .summary-layout { grid-template-columns: 1fr; } /* Il box laterale del tabellone va sotto */
-            .charts-section { grid-template-columns: 1fr; } /* I grafici si incolonnano */
+            .summary-layout { grid-template-columns: 1fr; }
+            .charts-section { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            body { flex-direction: column; } /* Sidebar in alto, contenuti in basso */
+            body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; }
             .sidebar-header { padding: 15px; }
             .nav-menu { flex-direction: row; justify-content: center; padding: 0; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1); }
@@ -139,11 +133,11 @@
             .nav-link .icon { margin-right: 6px; font-size: 16px; }
             
             .main-content { padding: 20px; }
-            .grid-2, .split-correction { grid-template-columns: 1fr; gap: 15px; } /* Disposizione a colonna singola */
+            .grid-2, .split-correction { grid-template-columns: 1fr; gap: 15px; }
         }
 
         @media (max-width: 480px) {
-            .nav-menu { display: grid; grid-template-columns: 1fr 1fr; text-align: center; } /* Menu a griglia compatta */
+            .nav-menu { display: grid; grid-template-columns: 1fr 1fr; text-align: center; }
             .nav-link { justify-content: center; padding: 10px; border-bottom: none; }
             .nav-link.active { background-color: rgba(37, 99, 235, 0.25); }
             .page-title { font-size: 18px; }
@@ -156,7 +150,7 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <h1>I.C. ODERZO</h1>
-	<h1>Esame di Stato</h1>
+            <h1>Esame di Stato</h1>
             <p>Valutazione Prova Scritta di Matematica</p>
         </div>
         <div class="nav-menu">
@@ -172,8 +166,6 @@
         <div id="page-home" class="page active">
             <h2 class="page-title">Benvenuto nella Dashboard di VALU-MATE*</h2>
             <p class="page-subtitle">Applicazione per il calcolo della valutazione della prova scritta di Matematica e del relativo giudizio.</p>
-	  
-
             
             <div class="card">
                 <div class="card-title">🚀 Operazioni Rapide</div>
@@ -196,8 +188,15 @@
 
         <div id="page-settings" class="page">
             <h2 class="page-title">Impostazioni Prova</h2>
-            <p class="page-subtitle">Imposta le informazioni del registro ed i punteggi massimi strutturati per i quesiti.</p>
+            <p class="page-subtitle">Imposta le informazioni del registro, i punteggi massimi strutturati ed i pesi percentuali delle aree.</p>
             
+            <!-- Modifica 2: Inserimento Box Rubrica di Valutazione PDF ad inizio pagina -->
+            <div class="card" style="border-left: 4px solid var(--secondary); background: var(--secondary-light);">
+                <div class="card-title" style="color: var(--secondary); margin-bottom: 8px;">📄 Documentazione Ufficiale</div>
+                <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-main);">Visualizza o scarica la griglia con i criteri della rubrica di valutazione istituzionale per la prova scritta di Matematica.</p>
+                <a href="documenti/Rubrica-Valutazione-Matematica-25-26.pdf" target="_blank" class="btn btn-secondary" style="display: inline-flex; width: auto; background: #ffffff; font-weight: 700; border-color: #cbd5e1;">👁️ Scarica / Apri Rubrica PDF</a>
+            </div>
+
             <div class="card">
                 <div class="card-title">📌 Informazioni Generali</div>
                 <div class="grid-2">
@@ -212,26 +211,56 @@
                 </div>
             </div>
 
+            <!-- Modifica 1: Modificato il secondo box per consentire l'inserimento integrato sia del punteggio max che del peso % -->
             <div class="card">
-                <div class="card-title">📐 Punteggi Massimi dei Singoli Quesiti (Aree)</div>
+                <div class="card-title">📐 Parametri Quesiti (Punteggi Massimi e Pesi Percentuali)</div>
                 <div class="grid-4">
-                    <div class="form-group">
-                        <label>Spazio e Figure:</label>
-                        <input type="number" id="max-spazio" value="10" min="1" step="0.5" oninput="salvaDatiConfig()">
+                    <div class="form-group" style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid var(--border);">
+                        <label style="color: var(--secondary); font-weight:700; margin-bottom:8px;">Spazio e Figure</label>
+                        <div style="margin-bottom: 6px;">
+                            <label style="font-size:10px; color: var(--text-muted);">Punti Max:</label>
+                            <input type="number" id="max-spazio" value="10" min="1" step="0.5" oninput="salvaDatiConfig()">
+                        </div>
+                        <div>
+                            <label style="font-size:10px; color: var(--text-muted);">Peso (%):</label>
+                            <input type="number" id="w-spazio" value="30" min="0" max="100" step="1" oninput="salvaDatiConfig()">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Numeri:</label>
-                        <input type="number" id="max-numeri" value="10" min="1" step="0.5" oninput="salvaDatiConfig()">
+                    <div class="form-group" style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid var(--border);">
+                        <label style="color: var(--secondary); font-weight:700; margin-bottom:8px;">Numeri</label>
+                        <div style="margin-bottom: 6px;">
+                            <label style="font-size:10px; color: var(--text-muted);">Punti Max:</label>
+                            <input type="number" id="max-numeri" value="10" min="1" step="0.5" oninput="salvaDatiConfig()">
+                        </div>
+                        <div>
+                            <label style="font-size:10px; color: var(--text-muted);">Peso (%):</label>
+                            <input type="number" id="w-numeri" value="24" min="0" max="100" step="1" oninput="salvaDatiConfig()">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Relazioni e Funzioni:</label>
-                        <input type="number" id="max-relazioni" value="10" min="1" step="0.5" oninput="salvaDatiConfig()">
+                    <div class="form-group" style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid var(--border);">
+                        <label style="color: var(--secondary); font-weight:700; margin-bottom:8px;">Relazioni e Funzioni</label>
+                        <div style="margin-bottom: 6px;">
+                            <label style="font-size:10px; color: var(--text-muted);">Punti Max:</label>
+                            <input type="number" id="max-relazioni" value="10" min="1" step="0.5" oninput="salvaDatiConfig()">
+                        </div>
+                        <div>
+                            <label style="font-size:10px; color: var(--text-muted);">Peso (%):</label>
+                            <input type="number" id="w-relazioni" value="30" min="0" max="100" step="1" oninput="salvaDatiConfig()">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Dati e Previsioni:</label>
-                        <input type="number" id="max-dati" value="10" min="1" step="0.5" oninput="salvaDatiConfig()">
+                    <div class="form-group" style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid var(--border);">
+                        <label style="color: var(--secondary); font-weight:700; margin-bottom:8px;">Dati e Previsioni</label>
+                        <div style="margin-bottom: 6px;">
+                            <label style="font-size:10px; color: var(--text-muted);">Punti Max:</label>
+                            <input type="number" id="max-dati" value="10" min="1" step="0.5" oninput="salvaDatiConfig()">
+                        </div>
+                        <div>
+                            <label style="font-size:10px; color: var(--text-muted);">Peso (%):</label>
+                            <input type="number" id="w-dati" value="16" min="0" max="100" step="1" oninput="salvaDatiConfig()">
+                        </div>
                     </div>
                 </div>
+                <div id="weight-alert-box" style="margin-top: 12px; font-size: 12px; font-weight: 600;"></div>
             </div>
 
             <div class="card">
@@ -296,8 +325,15 @@
                     <div class="box-media" id="out-media-pond">Media Ponderata (Somma dei Pesi): -</div>
                     <div class="box-voto-finale" id="out-voto-definitivo">VOTO FINALE: -</div>
                     
-                    <label style="margin-top:5px;">Giudizio Analitico Estratto:</label>
+                    <!-- Modifica 3: Intestazione con pulsante integrato per copiare il testo puro senza formattazione -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px; margin-bottom: 6px;">
+                        <label style="margin-bottom: 0;">Giudizio Analitico Estratto:</label>
+                        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px; width: auto; height: auto;" onclick="copiaGiudizioTestoPuro()">📋 Copia Testo</button>
+                    </div>
                     <div class="box-giudizio" id="out-giudizio-testo">Seleziona un alunno e inserisci i voti per produrre il giudizio.</div>
+                    
+                    <!-- Modifica 4: Inserito pulsante di stampa rubrica compilata per il singolo alunno -->
+                    <button class="btn btn-secondary" style="margin-top: 15px; width: 100%; border-color: var(--secondary); color: var(--secondary); font-weight: 700; background: #ffffff;" onclick="stampaRubricaSingoloAlunno()">🖨️ Stampa Rubrica Compilata Alunno</button>
                 </div>
             </div>
         </div>
@@ -326,10 +362,10 @@
                         <thead>
                             <tr>
                                 <th onclick="cambiaOrdinamentoColonna('nome')">Studente <span id="s-nome"></span></th>
-                                <th onclick="cambiaOrdinamentoColonna('spazio')">Spazio (30%) <span id="s-spazio"></span></th>
-                                <th onclick="cambiaOrdinamentoColonna('numeri')">Numeri (24%) <span id="s-numeri"></span></th>
-                                <th onclick="cambiaOrdinamentoColonna('relazioni')">Relazioni (30%) <span id="s-relazioni"></span></th>
-                                <th onclick="cambiaOrdinamentoColonna('dati')">Dati (16%) <span id="s-dati"></span></th>
+                                <th onclick="cambiaOrdinamentoColonna('spazio')">Spazio (<span id="txt-w-spazio">30</span>%) <span id="s-spazio"></span></th>
+                                <th onclick="cambiaOrdinamentoColonna('numeri')">Numeri (<span id="txt-w-numeri">24</span>%) <span id="s-numeri"></span></th>
+                                <th onclick="cambiaOrdinamentoColonna('relazioni')">Relazioni (<span id="txt-w-relazioni">30</span>%) <span id="s-relazioni"></span></th>
+                                <th onclick="cambiaOrdinamentoColonna('dati')">Dati (<span id="txt-w-dati">16</span>%) <span id="s-dati"></span></th>
                                 <th onclick="cambiaOrdinamentoColonna('media')">Media P. <span id="s-media"></span></th>
                                 <th onclick="cambiaOrdinamentoColonna('voto')">Finale <span id="s-voto"></span></th>
                             </tr>
@@ -357,6 +393,8 @@
                         <button class="btn btn-primary" onclick="scaricaReportWordDoc()">🖨️ Esporta Relazione Completa (.doc)</button>
                         <button class="btn btn-secondary" style="padding:8px 12px; font-size:13px;" onclick="scaricaMatriceCSV()">📊 Esporta Foglio Excel (.csv)</button>
                         <button class="btn btn-secondary" style="padding:8px 12px; font-size:13px;" onclick="eseguiStampaLayoutPulito()">🖨️ Stampa Tabellone Visibile</button>
+                        <!-- Modifica 4: Pulsante per stampare le schede-rubriche per tutti gli alunni in blocco -->
+                        <button class="btn btn-secondary" style="padding:8px 12px; font-size:13px; background-color: var(--secondary-light); border-color: var(--secondary); color: var(--secondary); font-weight: 700;" onclick="stampaRubricheTuttiAlunniMassivo()">🖨️ Stampa Rubriche per Tutti</button>
                     </div>
                 </div>
             </div>
@@ -377,7 +415,8 @@
     </div>
 
     <script>
-        let configApp = { classe: "", data: "", max_spazio: 10, max_numeri: 10, max_relazioni: 10, max_dati: 10 };
+        // ConfigApp ora include i valori di default modificabili per i pesi percentuali delle aree
+        let configApp = { classe: "", data: "", max_spazio: 10, max_numeri: 10, max_relazioni: 10, max_dati: 10, w_spazio: 30, w_numeri: 24, w_relazioni: 30, w_dati: 16 };
         let databaseAlunni = {};
         let ordineTabella = { colonna: 'nome', crescente: true };
 
@@ -426,11 +465,21 @@
                 configApp = JSON.parse(localConfig);
                 document.getElementById('cfg-classe').value = configApp.classe || "";
                 document.getElementById('cfg-data').value = configApp.data || "";
-                document.getElementById('max-spazio').value = configApp.max_spazio || 10;
-                document.getElementById('max-numeri').value = configApp.max_numeri || 10;
-                document.getElementById('max-relazioni').value = configApp.max_relazioni || 10;
-                document.getElementById('max-dati').value = configApp.max_dati || 10;
+                document.getElementById('max-spazio').value = configApp.max_spazio !== undefined ? configApp.max_spazio : 10;
+                document.getElementById('max-numeri').value = configApp.max_numeri !== undefined ? configApp.max_numeri : 10;
+                document.getElementById('max-relazioni').value = configApp.max_relazioni !== undefined ? configApp.max_relazioni : 10;
+                document.getElementById('max-dati').value = configApp.max_dati !== undefined ? configApp.max_dati : 10;
+                
+                // Caricamento dei campi peso percentuale aggiuntivi
+                document.getElementById('w-spazio').value = configApp.w_spazio !== undefined ? configApp.w_spazio : 30;
+                document.getElementById('w-numeri').value = configApp.w_numeri !== undefined ? configApp.w_numeri : 24;
+                document.getElementById('w-relazioni').value = configApp.w_relazioni !== undefined ? configApp.w_relazioni : 30;
+                document.getElementById('w-dati').value = configApp.w_dati !== undefined ? configApp.w_dati : 16;
             }
+            
+            // Sincronizza lo stato iniziale e calcola l'avviso sulla somma dei pesi
+            salvaDatiConfig();
+
             let localAlunni = localStorage.getItem('db_esame_mat_alunni');
             if (localAlunni) databaseAlunni = JSON.parse(localAlunni);
 
@@ -444,6 +493,26 @@
             configApp.max_numeri = parseFloat(document.getElementById('max-numeri').value) || 10;
             configApp.max_relazioni = parseFloat(document.getElementById('max-relazioni').value) || 10;
             configApp.max_dati = parseFloat(document.getElementById('max-dati').value) || 10;
+            
+            // Salvataggio dei nuovi valori dei pesi percentuali inseriti
+            configApp.w_spazio = parseFloat(document.getElementById('w-spazio').value) || 0;
+            configApp.w_numeri = parseFloat(document.getElementById('w-numeri').value) || 0;
+            configApp.w_relazioni = parseFloat(document.getElementById('w-relazioni').value) || 0;
+            configApp.w_dati = parseFloat(document.getElementById('w-dati').value) || 0;
+            
+            // Controllo validità somma pesi (deve fare 100%)
+            let sommaPesi = configApp.w_spazio + configApp.w_numeri + configApp.w_relazioni + configApp.w_dati;
+            let scatolaAllerta = document.getElementById('weight-alert-box');
+            if(scatolaAllerta) {
+                if(Math.abs(sommaPesi - 100) > 0.01) {
+                    scatolaAllerta.innerHTML = `⚠️ Attenzione: la somma attuale dei pesi è <span style="color:var(--danger); font-weight:700;">${sommaPesi}%</span>. Per garantire la coerenza statistica la somma dovrebbe essere esattamente 100%.`;
+                    scatolaAllerta.style.color = "var(--text-main)";
+                } else {
+                    scatolaAllerta.innerHTML = `✅ Bilanciamento pesi corretto (100%).`;
+                    scatolaAllerta.style.color = "var(--success)";
+                }
+            }
+            
             localStorage.setItem('db_esame_mat_config', JSON.stringify(configApp));
         }
 
@@ -591,16 +660,22 @@
         }
 
         function aggiornaInterfacciaRevisioneVoti(fileStudente) {
-            let w_spazio = (fileStudente.voti[0] * 0.30).toFixed(2);
-            let w_numeri = (fileStudente.voti[1] * 0.24).toFixed(2);
-            let w_relaz = (fileStudente.voti[2] * 0.30).toFixed(2);
-            let w_dati = (fileStudente.voti[3] * 0.16).toFixed(2);
+            // Modifica 1: Sostituzione dei valori fissi (0.30, 0.24...) con le proprietà dinamiche configApp.w_xxxx
+            let f_spazio = configApp.w_spazio !== undefined ? configApp.w_spazio : 30;
+            let f_numeri = configApp.w_numeri !== undefined ? configApp.w_numeri : 24;
+            let f_relaz = configApp.w_relazioni !== undefined ? configApp.w_relazioni : 30;
+            let f_dati = configApp.w_dati !== undefined ? configApp.w_dati : 16;
+
+            let w_spazio = (fileStudente.voti[0] * (f_spazio / 100)).toFixed(2);
+            let w_numeri = (fileStudente.voti[1] * (f_numeri / 100)).toFixed(2);
+            let w_relaz = (fileStudente.voti[2] * (f_relaz / 100)).toFixed(2);
+            let w_dati = (fileStudente.voti[3] * (f_dati / 100)).toFixed(2);
 
             document.getElementById('box-parziali-pesati').innerHTML = `
-                <div class="detail-row"><span>📐 Spazio e Figure (30%)</span> <span><b>${fileStudente.voti[0]}/10</b> <span class="weight-badge">pesato: ${w_spazio}</span></span></div>
-                <div class="detail-row"><span>🧮 Numeri (24%)</span> <span><b>${fileStudente.voti[1]}/10</b> <span class="weight-badge">pesato: ${w_numeri}</span></span></div>
-                <div class="detail-row"><span>📈 Relazioni e Funzioni (30%)</span> <span><b>${fileStudente.voti[2]}/10</b> <span class="weight-badge">pesato: ${w_relaz}</span></span></div>
-                <div class="detail-row"><span>📊 Dati e Previsioni (16%)</span> <span><b>${fileStudente.voti[3]}/10</b> <span class="weight-badge">pesato: ${w_dati}</span></span></div>
+                <div class="detail-row"><span>📐 Spazio e Figure (${f_spazio}%)</span> <span><b>${fileStudente.voti[0]}/10</b> <span class="weight-badge">pesato: ${w_spazio}</span></span></div>
+                <div class="detail-row"><span>🧮 Numeri (${f_numeri}%)</span> <span><b>${fileStudente.voti[1]}/10</b> <span class="weight-badge">pesato: ${w_numeri}</span></span></div>
+                <div class="detail-row"><span>📈 Relazioni e Funzioni (${f_relaz}%)</span> <span><b>${fileStudente.voti[2]}/10</b> <span class="weight-badge">pesato: ${w_relaz}</span></span></div>
+                <div class="detail-row"><span>📊 Dati e Previsioni (${f_dati}%)</span> <span><b>${fileStudente.voti[3]}/10</b> <span class="weight-badge">pesato: ${w_dati}</span></span></div>
             `;
 
             if (fileStudente.giudizio) {
@@ -633,7 +708,13 @@
             let v_relaz = Math.round((pt_relaz / configApp.max_relazioni) * 10 * 10) / 10;
             let v_dati = Math.round((pt_dati / configApp.max_dati) * 10 * 10) / 10;
 
-            let media_ponderata = (v_spazio * 0.30) + (v_numeri * 0.24) + (v_relaz * 0.30) + (v_dati * 0.16);
+            // Modifica 1: Calcolo basato sulle percentuali configurate dinamicamente
+            let f_spazio = configApp.w_spazio !== undefined ? configApp.w_spazio : 30;
+            let f_numeri = configApp.w_numeri !== undefined ? configApp.w_numeri : 24;
+            let f_relaz = configApp.w_relazioni !== undefined ? configApp.w_relazioni : 30;
+            let f_dati = configApp.w_dati !== undefined ? configApp.w_dati : 16;
+
+            let media_ponderata = (v_spazio * (f_spazio / 100)) + (v_numeri * (f_numeri / 100)) + (v_relaz * (f_relaz / 100)) + (v_dati * (f_dati / 100));
             let media_stringa = media_ponderata.toFixed(2);
 
             let frazione = media_ponderata - Math.floor(media_ponderata);
@@ -663,6 +744,155 @@
             caricaDatiSingoloAlunno();
         }
 
+        // Modifica 3: Funzione integrata per copiare il giudizio ripulito da ogni tag HTML
+        function copiaGiudizioTestoPuro() {
+            let scatolaGiudizio = document.getElementById('out-giudizio-testo');
+            let markup = scatolaGiudizio.innerHTML;
+            
+            if (!markup || markup.includes("Seleziona un alunno") || markup.includes("Voti non ancora salvati")) {
+                alert("⚠️ Nessun giudizio valido disponibile per la copia.");
+                return;
+            }
+            
+            // Converte le interruzioni di riga HTML in a capo di testo e ripulisce il resto
+            let contenitoreTemporaneo = document.createElement('div');
+            contenitoreTemporaneo.innerHTML = markup.replace(/<br\s*\/?>/gi, '\n');
+            let testoPuro = contenitoreTemporaneo.textContent || contenitoreTemporaneo.innerText;
+            
+            navigator.clipboard.writeText(testoPuro.trim()).then(() => {
+                alert("📋 Giudizio copiato negli appunti (senza formattazione HTML)!");
+            }).catch(() => {
+                alert("Impossibile copiare automaticamente. Selezionare il testo manualmente.");
+            });
+        }
+
+        // Modifica 4: Funzione interna generica che crea il layout HTML della rubrica ministeriale compilata per la stampa
+        function generaHtmlStrutturaRubricaStampa(nomeStudente) {
+            let record = databaseAlunni[nomeStudente];
+            if (!record || !record.giudizio) return "";
+
+            let totalePuntiAssegnati = (parseFloat(record.punti[0]) + parseFloat(record.punti[1]) + parseFloat(record.punti[2]) + parseFloat(record.punti[3])).toFixed(1);
+            let totalePuntiMassimi = (parseFloat(configApp.max_spazio) + parseFloat(configApp.max_numeri) + parseFloat(configApp.max_relazioni) + parseFloat(configApp.max_dati)).toFixed(1);
+
+            let bloccoHtml = `
+            <div style="font-family: 'Segoe UI', sans-serif; color: #0f172a; padding: 25px; margin: 0 auto; max-width: 820px; page-break-after: always; box-sizing: border-box;">
+                <div style="text-align: center; border-bottom: 2px solid #0f172a; padding-bottom: 8px; margin-bottom: 18px;">
+                    <h1 style="font-size: 17px; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">Istituto Comprensivo Oderzo - Esame di Stato</h1>
+                    <h2 style="font-size: 13px; font-weight: 500; margin: 4px 0 0 0; color: #475569;">Rubrica di Valutazione Compilata - Prova Scritta di Matematica</h2>
+                </div>
+                
+                <table style="width: 100%; margin-bottom: 15px; font-size: 12px; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 5px 0; width: 50%;"><b>Alunno/a:</b> <span style="font-size: 13px; text-transform: uppercase; font-weight: 700;">${nomeStudente}</span></td>
+                        <td style="padding: 5px 0; width: 25%;"><b>Classe:</b> ${configApp.classe || '-'}</td>
+                        <td style="padding: 5px 0; width: 25%;"><b>Data Prova:</b> ${configApp.data || '-'}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 0;"><b>Punteggio Grezzo Complessivo:</b> ${totalePuntiAssegnati} / ${totalePuntiMassimi}</td>
+                        <td style="padding: 5px 0;" colspan="2"><b>VOTO ATTRIBUITO:</b> <span style="font-size: 14px; font-weight: 800; color: #2563eb; background: #eff6ff; padding: 3px 8px; border-radius: 4px; border: 1px solid #bfdbfe;">${record.finale} / 10</span></td>
+                    </tr>
+                </table>
+                
+                <h3 style="font-size: 11px; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.3px; color: #1e293b;">Dettaglio dei Livelli Conseguiti per Area</h3>
+                
+                <table style="width: 100%; border-collapse: collapse; font-size: 10px; line-height: 1.3; text-align: left; margin-bottom: 15px;">
+                    <thead>
+                        <tr style="background: #f1f5f9; text-align: center;">
+                            <th style="border: 1px solid #cbd5e1; padding: 6px; width: 20%;">Dimensione / Area</th>
+                            <th style="border: 1px solid #cbd5e1; padding: 6px; width: 11.4%;">Voto 4<br><span style="font-weight:normal; font-size:8.5px;">Incompleto</span></th>
+                            <th style="border: 1px solid #cbd5e1; padding: 6px; width: 11.4%;">Voto 5<br><span style="font-weight:normal; font-size:8.5px;">Parziale</span></th>
+                            <th style="border: 1px solid #cbd5e1; padding: 6px; width: 11.4%;">Voto 6<br><span style="font-weight:normal; font-size:8.5px;">Essenziale</span></th>
+                            <th style="border: 1px solid #cbd5e1; padding: 6px; width: 11.4%;">Voto 7<br><span style="font-weight:normal; font-size:8.5px;">Adeguato</span></th>
+                            <th style="border: 1px solid #cbd5e1; padding: 6px; width: 11.4%;">Voto 8<br><span style="font-weight:normal; font-size:8.5px;">Discreto</span></th>
+                            <th style="border: 1px solid #cbd5e1; padding: 6px; width: 11.4%;">Voto 9<br><span style="font-weight:normal; font-size:8.5px;">Sicuro</span></th>
+                            <th style="border: 1px solid #cbd5e1; padding: 6px; width: 11.4%;">Voto 10<br><span style="font-weight:normal; font-size:8.5px;">Eccellente</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+            const mappaturaAree = [
+                { id: 'spazio', etichetta: '<b>Spazio e Figure</b><br><span style="color:#64748b; font-size:8.5px;">Strategie risolutive</span>', votoOttenuto: record.voti[0] },
+                { id: 'numeri', etichetta: '<b>Numeri</b><br><span style="color:#64748b; font-size:8.5px;">Procedure di calcolo</span>', votoOttenuto: record.voti[1] },
+                { id: 'relazioni', etichetta: '<b>Relazioni e Funzioni</b><br><span style="color:#64748b; font-size:8.5px;">Rappresentazioni</span>', votoOttenuto: record.voti[2] },
+                { id: 'dati', etichetta: '<b>Dati e Previsioni</b><br><span style="color:#64748b; font-size:8.5px;">Analisi informazioni</span>', votoOttenuto: record.voti[3] }
+            ];
+
+            mappaturaAree.forEach(area => {
+                bloccoHtml += `<tr>`;
+                bloccoHtml += `<td style="border: 1px solid #cbd5e1; padding: 6px; background: #f8fafc;">${area.etichetta}<br><span style="color:#2563eb; font-weight:700;">Voto: ${area.votoOttenuto}</span></td>`;
+                
+                let arrotondato = Math.round(area.votoOttenuto);
+                if(arrotondato < 5) arrotondato = 4;
+
+                for(let colVoto = 4; colVoto <= 10; colVoto++) {
+                    let cellaTesto = dizionarioRubrica[area.id][colVoto] || "";
+                    let cellaSelezionata = (colVoto === arrotondato);
+                    
+                    // Modifica 4: Stile specifico di evidenziazione per incorniciare ed evidenziare graficamente la cella conseguita
+                    let stileCella = cellaSelezionata 
+                        ? `background-color: #dcfce7; border: 2.5px solid #16a34a; font-weight: 600; color: #14532d; box-shadow: inset 0 0 3px rgba(22,163,74,0.15);` 
+                        : `border: 1px solid #cbd5e1; color: #475569; opacity: 0.85;`;
+                    
+                    bloccoHtml += `<td style="padding: 5px; font-size: 9.5px; text-align: justify; vertical-align: top; ${stileCella}">${cellaTesto}</td>`;
+                }
+                bloccoHtml += `</tr>`;
+            });
+
+            bloccoHtml += `
+                    </tbody>
+                </table>
+                
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; margin-top: 10px;">
+                    <h4 style="font-size: 11px; margin: 0 0 4px 0; text-transform: uppercase; color: #0f172a; letter-spacing: 0.3px;">Giudizio Sintetico Diagnostico Estratto:</h4>
+                    <p style="font-size: 10.5px; font-style: italic; margin: 0; line-height: 1.4; color: #334155;">${record.giudizio}</p>
+                </div>
+                
+                <div style="margin-top: 35px; display: flex; justify-content: space-between; font-size: 11px;">
+                    <div style="width: 180px; text-align: center; border-top: 1px dashed #cbd5e1; padding-top: 4px;">Firma del Docente</div>
+                    <div style="width: 180px; text-align: center; border-top: 1px dashed #cbd5e1; padding-top: 4px;">Firma della Commissione</div>
+                </div>
+            </div>`;
+            
+            return bloccoHtml;
+        }
+
+        // Modifica 4: Apertura finestra di stampa per l'alunno attualmente sotto correzione
+        function stampaRubricaSingoloAlunno() {
+            let selezionato = document.getElementById('select-alunno').value;
+            if(!selezionato) { alert("Nessun alunno selezionato."); return; }
+            let record = databaseAlunni[selezionato];
+            if(!record || !record.giudizio) { alert("Salvare la valutazione dell'alunno prima di procedere alla stampa."); return; }
+
+            let finestra = window.open('', '', 'height=750,width=920');
+            finestra.document.write('<html><head><title>Stampa Scheda - ' + selezionato + '</title></head><body style="margin:0; padding:0;">');
+            finestra.document.write(generaHtmlStrutturaRubricaStampa(selezionato));
+            finestra.document.write('</body></html>');
+            finestra.document.close();
+            setTimeout(() => { finestra.print(); finestra.close(); }, 350);
+        }
+
+        // Modifica 4: Funzione integrata nel tabellone per generare e stampare sequenzialmente tutte le schede completate
+        function stampaRubricheTuttiAlunniMassivo() {
+            let chiavi = Object.keys(databaseAlunni).sort();
+            let completati = chiavi.filter(k => databaseAlunni[k].giudizio);
+            
+            if(completati.length === 0) {
+                alert("Nessun alunno in elenco possiede una valutazione salvata da stampare.");
+                return;
+            }
+
+            let finestra = window.open('', '', 'height=750,width=920');
+            finestra.document.write('<html><head><title>Stampa Massiva Rubriche Valutative</title></head><body style="margin:0; padding:0;">');
+            
+            completati.forEach(nome => {
+                finestra.document.write(generaHtmlStrutturaRubricaStampa(nome));
+            });
+            
+            finestra.document.write('</body></html>');
+            finestra.document.close();
+            setTimeout(() => { finestra.print(); finestra.close(); }, 400);
+        }
+
         function cambiaOrdinamentoColonna(idColonna) {
             if (ordineTabella.colonna === idColonna) {
                 ordineTabella.crescente = !ordineTabella.crescente;
@@ -676,6 +906,17 @@
         function costruisciTabelloneDati() {
             document.getElementById('txt-classe-data-summary').innerText = `Classe: ${configApp.classe || '-'} | Data: ${configApp.data || '-'}`;
             
+            // Modifica 1: Sincronizzazione dinamica dei pesi percentuali all'interno dei tag TH della tabella
+            let f_spazio = configApp.w_spazio !== undefined ? configApp.w_spazio : 30;
+            let f_numeri = configApp.w_numeri !== undefined ? configApp.w_numeri : 24;
+            let f_relaz = configApp.w_relazioni !== undefined ? configApp.w_relazioni : 30;
+            let f_dati = configApp.w_dati !== undefined ? configApp.w_dati : 16;
+            
+            document.getElementById('txt-w-spazio').innerText = f_spazio;
+            document.getElementById('txt-w-numeri').innerText = f_numeri;
+            document.getElementById('txt-w-relazioni').innerText = f_relaz;
+            document.getElementById('txt-w-dati').innerText = f_dati;
+
             const intestazioni = ['nome', 'spazio', 'numeri', 'relazioni', 'dati', 'media', 'voto'];
             intestazioni.forEach(i => {
                 let span = document.getElementById('s-' + i);
@@ -762,10 +1003,11 @@
 
                 if (stud.giudizio) {
                     let badgeClass = stud.finale >= 6 ? 'suff' : 'insuff';
-                    rigaHtml += `<td><b>${stud.voti[0]}</b><span class="sub-txt">pesato: ${(stud.voti[0]*0.3).toFixed(2)}</span></td>`;
-                    rigaHtml += `<td><b>${stud.voti[1]}</b><span class="sub-txt">pesato: ${(stud.voti[1]*0.24).toFixed(2)}</span></td>`;
-                    rigaHtml += `<td><b>${stud.voti[2]}</b><span class="sub-txt">pesato: ${(stud.voti[2]*0.3).toFixed(2)}</span></td>`;
-                    rigaHtml += `<td><b>${stud.voti[3]}</b><span class="sub-txt">pesato: ${(stud.voti[3]*0.16).toFixed(2)}</span></td>`;
+                    // Modifica 1: Calcolo dei pesati dinamici nelle celle della tabella riassuntiva
+                    rigaHtml += `<td><b>${stud.voti[0]}</b><span class="sub-txt">pesato: ${(stud.voti[0]*(f_spazio/100)).toFixed(2)}</span></td>`;
+                    rigaHtml += `<td><b>${stud.voti[1]}</b><span class="sub-txt">pesato: ${(stud.voti[1]*(f_numeri/100)).toFixed(2)}</span></td>`;
+                    rigaHtml += `<td><b>${stud.voti[2]}</b><span class="sub-txt">pesato: ${(stud.voti[2]*(f_relaz/100)).toFixed(2)}</span></td>`;
+                    rigaHtml += `<td><b>${stud.voti[3]}</b><span class="sub-txt">pesato: ${(stud.voti[3]*(f_dati/100)).toFixed(2)}</span></td>`;
                     rigaHtml += `<td style="font-weight:700; color:var(--primary-light);">${stud.media_pond}</td>`;
                     rigaHtml += `<td><span class="badge-voto ${badgeClass}">${stud.finale}/10</span></td>`;
                 } else {
@@ -852,11 +1094,17 @@
             let chiavi = Object.keys(databaseAlunni).sort();
             if (chiavi.length === 0) { alert("Nessun dato da esportare."); return; }
 
+            let f_spazio = configApp.w_spazio !== undefined ? configApp.w_spazio : 30;
+            let f_numeri = configApp.w_numeri !== undefined ? configApp.w_numeri : 24;
+            let f_relaz = configApp.w_relazioni !== undefined ? configApp.w_relazioni : 30;
+            let f_dati = configApp.w_dati !== undefined ? configApp.w_dati : 16;
+
             let csv = "Alunno;Spazio Voto;Spazio Pesato;Numeri Voto;Numeri Pesato;Relazioni Voto;Relazioni Pesato;Dati Voto;Dati Pesato;Media Ponderata;Voto Finale\n";
             chiavi.forEach(k => {
                 let s = databaseAlunni[k];
                 if(s.giudizio) {
-                    csv += `${k};${s.voti[0]};${(s.voti[0]*0.3).toFixed(2)};${s.voti[1]};${(s.voti[1]*0.24).toFixed(2)};${s.voti[2]};${(s.voti[2]*0.3).toFixed(2)};${s.voti[3]};${(s.voti[3]*0.16).toFixed(2)};${s.media_pond};${s.finale}\n`;
+                    // Modifica 1: Esportazione Excel basata sulle percentuali correnti
+                    csv += `${k};${s.voti[0]};${(s.voti[0]*(f_spazio/100)).toFixed(2)};${s.voti[1]};${(s.voti[1]*(f_numeri/100)).toFixed(2)};${s.voti[2]};${(s.voti[2]*(f_relaz/100)).toFixed(2)};${s.voti[3]};${(s.voti[3]*(f_dati/100)).toFixed(2)};${s.media_pond};${s.finale}\n`;
                 } else { csv += `${k};-;-;-;-;-;-;-;-;-;-\n`; }
             });
 
@@ -871,6 +1119,11 @@
             let righe = document.querySelectorAll('#tabella-studenti tbody tr');
             if (righe.length === 0) { alert("Nessun dato da stampare."); return; }
 
+            let f_spazio = configApp.w_spazio !== undefined ? configApp.w_spazio : 30;
+            let f_numeri = configApp.w_numeri !== undefined ? configApp.w_numeri : 24;
+            let f_relaz = configApp.w_relazioni !== undefined ? configApp.w_relazioni : 30;
+            let f_dati = configApp.w_dati !== undefined ? configApp.w_dati : 16;
+
             let w = window.open('', '', 'height=700,width=900');
             w.document.write('<html><head><title>Stampa Tabellone</title><style>');
             w.document.write('body { font-family: sans-serif; padding: 20px; color:#334155; } h1 { text-align:center; font-size:16px; color:#0f172a; margin-bottom:5px; } h2 { text-align:center; font-size:12px; margin-bottom:20px; font-weight:normal; }');
@@ -878,7 +1131,8 @@
             w.document.write('.badge-voto { font-weight:700; } </style></head><body>');
             w.document.write('<h1>Tabellone Valutazione Prova Scritta Matematica</h1>');
             w.document.write('<h2><b>Classe:</b> '+(configApp.classe || '-')+' | <b>Data:</b> '+(configApp.data || '-')+'</h2>');
-            w.document.write('<table><thead><tr><th>Studente</th><th>Spazio (30%)</th><th>Numeri (24%)</th><th>Relazioni (30%)</th><th>Dati (16%)</th><th>Media P.</th><th>Voto Finale</th></tr></thead><tbody>');
+            // Modifica 1: Adeguamento intestazioni tabellone stampato
+            w.document.write('<table><thead><tr><th>Studente</th><th>Spazio ('+f_spazio+'%)</th><th>Numeri ('+f_numeri+'%)</th><th>Relazioni ('+f_relaz+'%)</th><th>Dati ('+f_dati+'%)</th><th>Media P.</th><th>Voto Finale</th></tr></thead><tbody>');
             
             righe.forEach(r => { w.document.write('<tr>' + r.innerHTML + '</tr>'); });
             
@@ -891,6 +1145,11 @@
             let chiavi = Object.keys(databaseAlunni).sort();
             if (chiavi.length === 0) { alert("Nessun dato presente."); return; }
 
+            let f_spazio = configApp.w_spazio !== undefined ? configApp.w_spazio : 30;
+            let f_numeri = configApp.w_numeri !== undefined ? configApp.w_numeri : 24;
+            let f_relaz = configApp.w_relazioni !== undefined ? configApp.w_relazioni : 30;
+            let f_dati = configApp.w_dati !== undefined ? configApp.w_dati : 16;
+
             let doc = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'>`;
             doc += `<style>body{font-family:Calibri,Arial,sans-serif; font-size:11pt;} h1{font-size:15pt; color:#0f172a; text-align:center;} h2{font-size:12pt; color:#2563eb; margin-top:20px; border-bottom:1px solid #ddd; padding-bottom:3px;} .v-box{background:#f8fafc; padding:10px; border-left:4px solid #2563eb; margin:10px 0;} .giudizio{text-align:justify; font-style:italic; font-size:10.5pt;} </style></head><body>`;
             doc += `<h1>RELAZIONE ESAME SCRITTO DI MATEMATICA</h1><p style='text-align:center;'><b>Classe:</b> ${configApp.classe} | <b>Data:</b> ${configApp.data}</p>`;
@@ -902,10 +1161,11 @@
                 if(s.giudizio) {
                     votiList.push(s.finale);
                     doc += `<ul>`;
-                    doc += `<li><b>Spazio e Figure:</b> Voto ${s.voti[0]}/10 (pesato: ${(s.voti[0]*0.3).toFixed(2)})</li>`;
-                    doc += `<li><b>Numeri:</b> Voto ${s.voti[1]}/10 (pesato: ${(s.voti[1]*0.24).toFixed(2)})</li>`;
-                    doc += `<li><b>Relazioni e Funzioni:</b> Voto ${s.voti[2]}/10 (pesato: ${(s.voti[2]*0.3).toFixed(2)})</li>`;
-                    doc += `<li><b>Dati e Previsioni:</b> Voto ${s.voti[3]}/10 (pesato: ${(s.voti[3]*0.16).toFixed(2)})</li>`;
+                    // Modifica 1: Report Word esportato integrando le percentuali dinamiche
+                    doc += `<li><b>Spazio e Figure:</b> Voto ${s.voti[0]}/10 (pesato: ${(s.voti[0]*(f_spazio/100)).toFixed(2)})</li>`;
+                    doc += `<li><b>Numeri:</b> Voto ${s.voti[1]}/10 (pesato: ${(s.voti[1]*(f_numeri/100)).toFixed(2)})</li>`;
+                    doc += `<li><b>Relazioni e Funzioni:</b> Voto ${s.voti[2]}/10 (pesato: ${(s.voti[2]*(f_relaz/100)).toFixed(2)})</li>`;
+                    doc += `<li><b>Dati e Previsioni:</b> Voto ${s.voti[3]}/10 (pesato: ${(s.voti[3]*(f_dati/100)).toFixed(2)})</li>`;
                     doc += `</ul>`;
                     doc += `<div class='v-box'><b>MEDIA PONDERATA:</b> ${s.media_pond} | <b>VOTO FINALE ASSEGNATO:</b> ${s.finale}/10</div>`;
                     doc += `<div class='giudizio'><b>GIUDIZIO DIAGNOSTICO:</b><br>${s.giudizio}</div>`;
